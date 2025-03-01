@@ -6,8 +6,10 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("user/")
+@RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {
 
@@ -18,8 +20,12 @@ public class UserController {
         return ResponseEntity.ok(userService.addUser(user));
     }
 
-    @RequestMapping(method = RequestMethod.POST,path = "/{userId}")
-    ResponseEntity<User> getUser(@RequestParam("userId") String userId){
+    @RequestMapping(method = RequestMethod.GET,path = "/{userId}")
+    ResponseEntity<User> getUser(@PathVariable("userId") String userId){
         return ResponseEntity.ok(userService.getUser(userId));
+    }
+    @RequestMapping(method = RequestMethod.GET)
+    ResponseEntity<List<User>> getUser(){
+        return ResponseEntity.ok(userService.getAllUser());
     }
 }

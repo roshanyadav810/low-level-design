@@ -5,6 +5,8 @@ import example.librarymanagementsystem.repository.UserRepository;
 import example.librarymanagementsystem.service.IUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,5 +30,10 @@ public class UserService implements IUser {
         Optional<User> userOptional = userRepository.findById(id);
         if(userOptional.isEmpty()) throw new RuntimeException("User not found");
         return userOptional.get();
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return userRepository.findAll();
     }
 }
