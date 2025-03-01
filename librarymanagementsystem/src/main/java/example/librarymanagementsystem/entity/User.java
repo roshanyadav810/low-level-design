@@ -10,7 +10,7 @@ import java.util.Set;
 @Table(name = "user"
         ,indexes = {
                 @Index(name = "idx_email",columnList = "email"),
-                @Index(name = "idx_name_email",columnList = "email,name")
+                @Index(name = "idx_name_email",columnList = "email,full_name")
         }
 )
 @Builder
