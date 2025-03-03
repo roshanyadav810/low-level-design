@@ -1,8 +1,7 @@
 package example.librarymanagementsystem.enums;
 
 public enum OrderStatus {
-    PENDING,
-    IN_PROGRESS,
-    FAILED,
-    COMPLETED
+    BOOK_ISSUED,
+    BOOK_RETURNED,
+    NOT_ELIGIBLE
 }

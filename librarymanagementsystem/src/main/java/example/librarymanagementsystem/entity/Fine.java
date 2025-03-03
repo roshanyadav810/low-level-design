@@ -19,6 +19,9 @@ public class Fine {
     @Column(name = "created_at")
     private Long createdAt;
 
+    @OneToOne(mappedBy = "fine")
+    private Order order;
+
     @PrePersist
     void addCreatedAt(){
         this.createdAt = Instant.now().getEpochSecond();
