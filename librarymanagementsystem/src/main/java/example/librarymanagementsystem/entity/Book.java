@@ -2,6 +2,8 @@ package example.librarymanagementsystem.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
+
+import java.time.Instant;
 import java.util.Set;
 
 @Entity
@@ -27,4 +29,13 @@ public class Book {
 
     @Column(name = "quantity")
     private int quantity = 0;
+
+    @Column(name = "created_at")
+    private Long createdAt;
+
+    @PrePersist
+    void addCreatedAt(){
+        this.createdAt = Instant.now().getEpochSecond();
+    }
+
 }

@@ -3,6 +3,8 @@ package example.librarymanagementsystem.entity;
 import example.librarymanagementsystem.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.time.Instant;
 import java.util.Set;
 
 
@@ -40,4 +42,13 @@ public class User {
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
     private Set<Role> role;
+
+    @Column(name = "created_at")
+    private Long createdAt;
+
+    @PrePersist
+    void addCreatedAt(){
+        this.createdAt = Instant.now().getEpochSecond();
+    }
+
 }
