@@ -1,0 +1,5 @@
+package com.fooddeliveryapp.entity.enums;
+
+public enum OrderStatus {
+    PENDING,PAYMENT_PENDING,PAYMENT_SUCCESS,ASSIGNED_TO_RESTAURANT,DELIVERY_AGENT_ASSIGNED,DELIVERED
+}
