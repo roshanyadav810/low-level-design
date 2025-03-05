@@ -5,10 +5,11 @@ import lombok.Data;
 
 import java.util.List;
 
+
 @Data
 public class Order {
     private String orderId;
-    private List<Dish> dishList;
+    private List<CartItem> items;
     private Payment payment;
     private DeliveryAgent deliveryAgent;
     private OrderStatus status;
