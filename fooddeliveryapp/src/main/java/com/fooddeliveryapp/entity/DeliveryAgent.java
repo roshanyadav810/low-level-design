@@ -1,5 +1,6 @@
 package com.fooddeliveryapp.entity;
 
+import com.fooddeliveryapp.entity.enums.DeliveryAgentStatus;
 import com.fooddeliveryapp.entity.enums.UserStatus;
 import lombok.Data;
 
