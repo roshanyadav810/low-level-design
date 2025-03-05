@@ -1,6 +1,7 @@
 package com.fooddeliveryapp.entity;
 
 import com.fooddeliveryapp.entity.enums.PaymentMetnod;
+import com.fooddeliveryapp.entity.enums.PaymentStatus;
 import lombok.Data;
 
 @Data
