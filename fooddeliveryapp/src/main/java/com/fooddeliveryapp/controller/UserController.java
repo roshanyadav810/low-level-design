@@ -31,4 +31,9 @@ public class UserController {
     public ResponseEntity<User>  delete(String userId){
         return ResponseEntity.ok(userService.delete(userId));
     }
+    @RequestMapping(method = RequestMethod.GET , path = "/health")
+    public ResponseEntity<String>  get(){
+        return ResponseEntity.ok("success");
+    }
+
 }
