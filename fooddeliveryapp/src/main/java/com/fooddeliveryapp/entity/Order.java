@@ -12,5 +12,6 @@ public class Order {
     private List<CartItem> items;
     private Payment payment;
     private DeliveryAgent deliveryAgent;
+    private User user;
     private OrderStatus status;
 }
