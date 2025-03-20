@@ -18,7 +18,7 @@ public class RestaurantController {
     private final IRestaurantService restaurantService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public ResponseEntity<Restaurant> add(Restaurant restaurant){
+    public ResponseEntity<Restaurant> add(@RequestBody Restaurant restaurant){
         return ResponseEntity.ok(restaurantService.add(restaurant));
     }
 
