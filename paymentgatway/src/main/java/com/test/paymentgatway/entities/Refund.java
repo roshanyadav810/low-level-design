@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.Currency;
 import java.util.UUID;
 
@@ -33,4 +34,19 @@ public class Refund {
     @Column(name = "status" , nullable = false)
     private PaymentStatus status;
 
+    @Column(name = "created_at")
+    private Long createdAt;
+
+    @Column(name = "updated_at")
+    private Long updatedAt;
+
+    @PrePersist
+    public void prePersist(){
+        this.createdAt = Instant.now().getEpochSecond();
+        this.updatedAt = Instant.now().getEpochSecond();
+    }
+    @PreUpdate
+    public void preUpdate(){
+        this.updatedAt = Instant.now().getEpochSecond();
+    }
 }

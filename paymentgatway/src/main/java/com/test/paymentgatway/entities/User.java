@@ -5,6 +5,7 @@ import com.test.paymentgatway.entities.enums.UserType;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Entity
@@ -43,5 +44,14 @@ public class User {
     @Column(name = "updated_at")
     private Long updatedAt;
 
+    @PrePersist
+    public void prePersist(){
+        this.createdAt = Instant.now().getEpochSecond();
+        this.updatedAt = Instant.now().getEpochSecond();
+    }
+    @PreUpdate
+    public void preUpdate(){
+        this.updatedAt = Instant.now().getEpochSecond();
+    }
 
 }

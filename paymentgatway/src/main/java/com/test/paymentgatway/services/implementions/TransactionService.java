@@ -3,6 +3,7 @@ package com.test.paymentgatway.services.implementions;
 import com.test.paymentgatway.entities.Transaction;
 import com.test.paymentgatway.repositories.TransactionRepository;
 import com.test.paymentgatway.services.ITransactionService;
+import com.test.paymentgatway.services.IUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -14,13 +15,29 @@ import java.util.UUID;
 @Slf4j
 public class TransactionService implements ITransactionService {
     private final TransactionRepository transactionRepository;
+    private final IUserService userService;
 
-    public TransactionService(TransactionRepository transactionRepository) {
+    public TransactionService(TransactionRepository transactionRepository, IUserService userService) {
         this.transactionRepository = transactionRepository;
+        this.userService = userService;
     }
 
     @Override
     public Transaction create(Transaction transaction) {
+        if(transaction.getUserId() != null && userService.get(transaction.getUserId()) == null){
+            throw new RuntimeException("User not found");
+        }
+        if(transaction.getMerchantId() != null && userService.get(transaction.getMerchantId()) == null){
+            throw new RuntimeException("MerchantId not found");
+        }
+
+        if(transaction.getIdempotencyKey() == null ){
+            throw new RuntimeException("Idempotency key not found");
+        }
+        if(transaction.getAmount() == null || transaction.getAmount().doubleValue() <= 0){
+            throw new RuntimeException("Amount should be greater than 0");
+        }
+
         transaction = transactionRepository.save(transaction);
         return transaction;
     }
